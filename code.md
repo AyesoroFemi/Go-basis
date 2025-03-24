@@ -3,7 +3,7 @@
 	what is global and local variable, ...Talk briefly about pointers
 
 	// var myLocation string = "Nigeria, Lagos"
-	p := "Johnny"
+    p := "Johnny"
 	fmt.Println(&p)
 	fmt.Printf("Deferencing the variable value %v\n", p)
 	fmt.Println(myLocation)
@@ -40,16 +40,234 @@
 
 /*
 
-	func add(a int, b int) int {
-    	return a + b
-	}
+    - Functions are the basic building blocks of Go code:
 
-	func calculateTax(price float64) float64 {
-      return price * 0.15
-	}
+        package main
 
-	tax := calculateTax(1000)
-	fmt.Println("Tax:", tax)
+        import "fmt"
+
+        func greet() {
+            fmt.Println("Hello from a function!")
+        }
+
+        func main() {
+            greet()
+        }
+
+    --------------------------------------------------------------------    
+
+    - Functions are values and have types (function as data)
+
+        package main
+
+        import "fmt"
+
+        func add(a, b int) int {
+            return a + b
+        }
+
+        func main() {
+            var myFunc func(int, int) int = add
+            result := myFunc(5, 3)
+            fmt.Println("Result:", result)
+        }
+
+    ------------------------------------------------------------------------
+
+    - Order of functions does not matter
+
+        package main
+
+        import "fmt"
+
+        func main() {
+            sayHi()
+            sayBye()
+        }
+
+        func sayBye() {
+            fmt.Println("Goodbye!")
+        }
+
+        func sayHi() {
+            fmt.Println("Hi there!")
+        }
+
+
+    --------------------------------------------------------------------
+
+    - Functions help break large problems into smaller tasks
+
+        package main
+
+        import "fmt"
+
+        func calculateArea(length, width float64) float64 {
+            return length * width
+        }
+
+        func main() {
+            l := 10.0
+            w := 5.0
+            area := calculateArea(l, w)
+            fmt.Println("Area:", area)
+        }
+
+    ----------------------------------------------------------------------
+
+    - Functions promote code reuse(Don't repeat yourself- DRY)
+
+    package main
+
+        import "fmt"
+
+        func printMessage(name string) {
+            fmt.Println("Hello,", name)
+        }
+
+        func main() {
+            printMessage("Alice")
+            printMessage("Bob")
+            printMessage("Charlie")
+        }
+
+    ---------------------------------------------------------------------------
+
+    Types of functions in Go
+
+        1. Normal functions with Identifier
+
+        package main
+
+        import "fmt"
+
+        func multiply(a int, b int) int {
+            return a * b
+        }
+
+        func main() {
+            result := multiply(4, 5)
+            fmt.Println("Multiplication:", result)
+        }
+
+    -------------------------------------------------------------------------
+
+    - Anonymous or Lambda functions
+
+    package main
+
+    import "fmt"
+
+    func main() {
+        sum := func(a int, b int) int {
+            return a + b
+        }
+
+        fmt.Println("Sum:", sum(2, 3))
+    }
+
+    ---------------------------------------------------------------------------
+
+    - Methods (functions associated with a type/struct)
+
+    package main
+
+    import "fmt"
+
+    type Rectangle struct {
+        length, width float64
+    }
+
+    func (r Rectangle) area() float64 {
+        return r.length * r.width
+    }
+
+    func main() {
+        rect := Rectangle{10, 5}
+        fmt.Println("Area:", rect.area())
+    }
+
+    ------------------------------------------------------------------------------
+
+    - Function Signature
+
+    // This is a function signature: func divide(a float64, b float64) float64
+    func divide(a float64, b float64) float64 {
+        return a / b
+    }
+
+
+    -------------------------------------------------------------------------
+
+    - Returning values from a function
+
+        package main
+
+        import "fmt"
+
+        func greet(name string) string {
+            return "Hello, " + name
+        }
+
+        func main() {
+            message := greet("Jane")
+            fmt.Println(message)
+        }
+
+    ------------------------------------------------------------------------------
+
+    - Returning multiple values
+
+    package main
+
+    import "fmt"
+
+    func divideAndRemainder(a, b int) (int, int) {
+        return a / b, a % b
+    }
+
+    func main() {
+        q, r := divideAndRemainder(10, 3)
+        fmt.Println("Quotient:", q, "Remainder:", r)
+    }
+
+
+    ---------------------------------------------------------------------------------
+
+    - Pass by Value
+
+    package main
+
+    import "fmt"
+
+    func changeValue(x int) {
+        x = 100
+    }
+
+    func main() {
+        a := 10
+        changeValue(a)
+        fmt.Println("a is still:", a) // Value not changed
+    }
+
+
+    ---------------------------------------------------------------------------------
+
+    - Pass by Reference (using pointers)
+
+    package main
+
+    import "fmt"
+
+    func changeValue(x *int) {
+        *x = 100
+    }
+
+    func main() {
+        a := 10
+        changeValue(&a)
+        fmt.Println("a is now:", a) // Value changed
+    }
 
 
 */
@@ -124,6 +342,18 @@ A value type in Go is a type where assignments or function calls create a copy o
 	sub[0] = 99         // affects original slice
 	fmt.Println(numbers) // [1, 99, 3, 4]
 
+    -----------------------------------
+
+    loop in slice — for range
+        seasons := []string{"Spring","Summer","Autumn","Winter"}
+		for ix, season := range seasons {
+		fmt.Printf("Season %d is: %s\n", ix, season)
+		}
+
+		var season string
+		for _, season = range seasons {
+		fmt.Printf("%s\n", season)
+		}
 
 
 */

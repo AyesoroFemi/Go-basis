@@ -10,7 +10,7 @@
 		https://code.visualstudio.com/
 
 	- Open your visual studio code
-		create a file main.go   --- This is the entry point of our application, everything start executing and running from main.go
+		create a file main.go   --- This is the entry point of the application, everything start executing and running from main.go
 		( A standalone executable belongs to main. Each Go application contains one main. )
 		go source code is stored in .go file
 		filenames consist of lower case - letters
@@ -72,7 +72,7 @@
 		A value that can be changed during program execution is called a variable while we have constant that cannnot change
 		variable is the keyword
 
-		When a variable is declared, memory in Go is initialized, which means it contains the default zero or null value depending upon its type automatically.
+		When a variable is declared, memory in Go is initialized (It means their is a memory address that you get and you can access), which means it contains the default zero or null value depending upon its type automatically.
 		For example, 0 for int, 0.0 for float, false for bool, empty string ("") for string, nil for pointer, zero-ed struct, and so on.
 
 		Short form with := assignment operator
@@ -219,7 +219,9 @@
 
 				- ALIASES: You can also define a new type as an alias of an existing one, which can be useful for improving code readability or for encapsulating functionality. For example:
 
-				type Age int
+				type IZ int
+
+                var age IZ = 5 
 
 				In this case, `Age` is a new type, but it has the same underlying type as `int`. You can define methods on these user-defined types.
 
@@ -239,6 +241,7 @@
 				* %s specifies format for string values.
 				* %v specifies the general default format.
 
+                Example: 	// fmt.Printf("What are the nos in this collections %d\n", numbers)
 
 			
 
@@ -372,7 +375,7 @@
 			This lesson introduces structs, addressing rudimentary concepts such as declaration and memory allocation.
 			Go supports user-defined or custom types in the form of alias types or structs. A struct tries to represent a real-world entity with its properties. Structs are composite types to use when you want to define a type that consists of several properties each having their type and value, grouping pieces of data together. Then, one can access that data as if it were part of a single entity.
 			Structs are value types and are constructed with the new function. The component pieces of data that constitute the struct type are called fields. A field has a type and a name. Field names within a struct must be unique.
-			The concept was called ADT (Abstract Data Type) in older texts on software engineering. It was also called a record in older languages like Cobol, and it also exists under the same name of struct in the C-family of languages and in the OO languages as a lightweight-class without methods.
+	
 			However, because Go does not have the concept of a class, the struct type has a much more important place in Go.
 			Definition of a struct
 			The general format of the definition of a struct is as follows:
