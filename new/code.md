@@ -532,10 +532,6 @@ func main() {
 }
 ```
 
-# README
-
-## Structs with Methods in Go
-
 ### Overview
 This document covers how to define and use methods in Go structs, including value and pointer receivers, factory functions, struct embedding, and interfaces.
 
