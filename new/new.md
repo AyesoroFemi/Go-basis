@@ -53,6 +53,20 @@ Choose any of the following IDEs for a better coding experience:
 
 > 🔸 A Go application can consist of multiple packages.
 
+
+### Import Keyword
+- A Go program is created by **linking packages together** using the `import` keyword.
+- Example:
+  ```go
+  import "fmt"
+  ```
+- This tells Go that the program needs functions or other elements from the `fmt` package (which is used for formatted I/O).
+
+### Visibility Rule
+- Packages expose their code objects to other packages based on identifier naming:
+  - If an identifier (constant, variable, function, etc.) **starts with an uppercase letter**, it is **exported** and visible outside the package.
+  - Example: `fmt.Println`
+
 ---
 
 ## 📁 Modules in Go
@@ -60,8 +74,9 @@ Choose any of the following IDEs for a better coding experience:
 ### What is a Module?
 - A **module** is a collection of related Go packages versioned together.
 - It provides **dependency management** and **version control**.
+- When there is a valid **go.mod file** in the root of your project directory, your project is a module
 
-### Initializing a Module
+### Initializing a project as a Module
 - To initialize a module, use:
   ```bash
   go mod init github.com/fullstack
@@ -70,6 +85,8 @@ Choose any of the following IDEs for a better coding experience:
 ### Module Files
 - `go.mod` — defines your module path and dependencies.
 - `go.sum` — maintains the checksums of dependencies for verification.
+- `go get` - to get dependency
+- `go mod tidy` - to install included dependency
 ---
 
 ## 🆔 Identifiers in Go
@@ -93,24 +110,6 @@ Programs consist of **keywords**, **constants**, **variables**, **operators**, *
 - Braces `{}`
 - Brackets `[]`
 
----
-
-## 📦 Continuation on Packages
-
-### Import Keyword
-- A Go program is created by **linking packages together** using the `import` keyword.
-- Example:
-  ```go
-  import "fmt"
-  ```
-- This tells Go that the program needs functions or other elements from the `fmt` package (which is used for formatted I/O).
-
-### Visibility Rule
-- Packages expose their code objects to other packages based on identifier naming:
-  - If an identifier (constant, variable, function, etc.) **starts with an uppercase letter**, it is **exported** and visible outside the package.
-  - Example: `fmt.Println`
-
----
 
 ## 🔤 Types & Variables in Go
 
@@ -267,8 +266,6 @@ ptr := new(int)      // allocates memory and returns a pointer
 - **Channel**: Concurrent communication pipeline.
 
 
-
-# Go Concepts: Beginner to Advanced
 
 ## USER DEFINED TYPES:
 User-defined types are types that are defined by the programmer, not the language. They allow you to create complex data structures by COMPOSING together existing types, be they built-in or other user-defined types.

@@ -38,6 +38,41 @@ func main() {
 
 ---
 
+# Go Constants Example
+
+This is an example demonstrating constants in Go. Constants are immutable values that cannot be changed during execution.
+
+## Code Example
+
+```go
+package main
+
+import "fmt"
+
+const (
+    Pi       = 3.14159         // Float constant
+    Truth    = true            // Boolean constant
+    Greeting = "Hello, Go!"    // String constant
+    MaxUsers = 100             // Integer constant
+)
+
+func main() {
+    fmt.Println("Pi:", Pi)
+    fmt.Println("Truth:", Truth)
+    fmt.Println("Greeting:", Greeting)
+    fmt.Println("Max Users:", MaxUsers)
+}
+
+
+## Explanation
+- `Pi` is a floating-point constant.
+- `Truth` is a boolean constant.
+- `Greeting` is a string constant.
+- `MaxUsers` is an integer constant.
+
+Constants in Go are immutable, meaning they cannot be reassigned after declaration.
+
+
 ## 🧠 Pointers in Go
 
 ### What is a Pointer?
@@ -496,6 +531,169 @@ func main() {
     fmt.Println(c.Count) // 1
 }
 ```
+
+# README
+
+## Structs with Methods in Go
+
+### Overview
+This document covers how to define and use methods in Go structs, including value and pointer receivers, factory functions, struct embedding, and interfaces.
+
+### 1. Basic Struct with Methods
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+// Define a struct
+type Person struct {
+	Name string
+	Age  int
+}
+
+// Method to greet
+func (p Person) Greet() {
+	fmt.Printf("Hello, my name is %s and I am %d years old.\n", p.Name, p.Age)
+}
+
+func main() {
+	p := Person{Name: "Alice", Age: 25}
+	p.Greet() // Output: Hello, my name is Alice and I am 25 years old.
+}
+```
+
+> **Note:** Since `Greet()` has a **value receiver**, it does not modify the struct.
+
+---
+
+### 2. Using a Pointer Receiver (Modifies Struct)
+
+```go
+package main
+
+import (
+	"fmt"
+)
+
+// Define a struct
+type Counter struct {
+	Value int
+}
+
+// Method with a pointer receiver to modify struct
+func (c *Counter) Increment() {
+	c.Value++
+}
+
+func main() {
+	c := Counter{Value: 10}
+	c.Increment()
+	fmt.Println("Counter:", c.Value) // Output: Counter: 11
+}
+```
+
+> **Why use a pointer receiver?** It modifies the struct's fields; otherwise, a copy is used.
+
+---
+
+### 3. Struct with Factory Function
+
+```go
+package main
+
+import "fmt"
+
+type Car struct {
+	Brand string
+	Speed int
+}
+
+// Factory function to create a new Car
+func NewCar(brand string, speed int) *Car {
+	return &Car{Brand: brand, Speed: speed}
+}
+
+// Method to display car details
+func (c Car) Show() {
+	fmt.Printf("Brand: %s, Speed: %d km/h\n", c.Brand, c.Speed)
+}
+
+func main() {
+	car := NewCar("Toyota", 120)
+	car.Show() // Output: Brand: Toyota, Speed: 120 km/h
+}
+```
+
+---
+
+### 4. Embedding Structs with Methods (Composition)
+
+```go
+package main
+
+import "fmt"
+
+// Base struct
+type Animal struct {
+	Name string
+}
+
+// Method on Animal
+func (a Animal) Speak() {
+	fmt.Println(a.Name, "makes a sound")
+}
+
+// Derived struct
+type Dog struct {
+	Animal // Embedding Animal
+	Breed  string
+}
+
+func main() {
+	d := Dog{Animal: Animal{Name: "Buddy"}, Breed: "Golden Retriever"}
+	d.Speak() // Output: Buddy makes a sound
+}
+```
+
+> **Why use struct embedding?** It allows code reuse, like inheritance but without complex hierarchies.
+
+---
+
+### 5. Interfaces with Struct Methods
+
+```go
+package main
+
+import "fmt"
+
+// Define an interface
+type Shape interface {
+	Area() float64
+}
+
+// Define a struct
+type Rectangle struct {
+	Width, Height float64
+}
+
+// Implement the interface
+func (r Rectangle) Area() float64 {
+	return r.Width * r.Height
+}
+
+func main() {
+	r := Rectangle{Width: 5, Height: 10}
+	fmt.Println("Area:", r.Area()) // Output: Area: 50
+}
+```
+
+> **Why use interfaces?** They allow polymorphism—structs with different implementations but a common behavior.
+
+
+
 
 ---
 
